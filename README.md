@@ -30,7 +30,7 @@ Se utilizaron las siguientes métricas para evaluar los modelos:
 
 ---
 
-## 📰 Artículos de referencia
+## 📰 Artículos de referencia para las pruebas
 - 📄 XGBoost:  
   Dubey et al. (2024). Explainable and Interpretable Model for the Early Detection of Brain Stroke Using Optimized Boosting Algorithms.  
   [DOI: 10.3390/diagnostics14222514](https://www.mdpi.com/2075-4418/14/22/2514)
