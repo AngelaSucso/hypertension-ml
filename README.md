@@ -1,21 +1,38 @@
 # Predicción de Hipertensión Arterial con Modelos Avanzados
 Se aplicaron modelos de clasificación para predecir la presencia de hipertensión arterial a partir de datos clínicos fácilmente obtenibles. La metodología replica parcialmente dos enfoques recientes: uno basado en boosting de árboles (XGBoost) y otro en aprendizaje profundo para datos tabulares (TabNet).
 
-## 📚 Dataset
-Se usó el Stroke Prediction Dataset, que incluye variables como:
-- Edad
-- Género
-- Nivel promedio de glucosa
-- IMC
-- Enfermedades cardíacas
-- Tipo de trabajo, residencia y tabaquismo  
-- Resultado: hipertensión (sí/no)
+## 📚 Datasets
+### 💉 [Blood Pressure Dataset](https://www.kaggle.com/datasets/pavanbodanki/blood-press/data)  
+Se usó el **Blood Pressure Dataset** correspondiente a XGBoost, que contiene variables relacionadas con:
+- Blood_Pressure_Abnormality  
+- Level_of_Hemoglobin  
+- Genetic_Pedigree_Coefficient  
+- Age  
+- BMI  
+- Sex
+- Pregnancy  
+- Smoking  
+- Physical_activity 
+- **Resultado:** presión arterial (alta o normal)  
+🔗 [Disponible en Kaggle](https://www.kaggle.com/datasets/pavanbodanki/blood-press/data)
 
-Este dataset fue elegido por su similitud con los datos utilizados en los artículos originales.
+### 🧠 [Hypertension Risk Model Dataset](https://www.kaggle.com/datasets/khan1803115/hypertension-risk-model-main)  
+Se usó el **Hypertension Risk Model Dataset** correspondiente a TabNet, que considera factores de riesgo como:
+- Edad  
+- Género  
+- Peso y altura  
+- IMC  
+- Consumo de sal  
+- Nivel de estrés  
+- Actividad física y herencia genética  
+- **Resultado:** riesgo de hipertensión (sí/no)  
+🔗 [Disponible en Kaggle](https://www.kaggle.com/datasets/khan1803115/hypertension-risk-model-main)
+
+---
 
 ## 🧠 Modelos aplicados
-- ✅ TabNet (modelo de deep learning para datos tabulares)
 - ✅ XGBoost (con ajuste básico de parámetros)
+- ✅ TabNet (modelo de deep learning para datos tabulares)
 
 Ambos modelos fueron implementados en Google Colab usando librerías como `xgboost`, `pytorch-tabnet`, `imbalanced-learn`, `scikit-learn` y `pandas`.
 
@@ -30,43 +47,30 @@ Se utilizaron las siguientes métricas para evaluar los modelos:
 
 ---
 
-## 📰 Artículos de referencia para las pruebas
-- 📄 XGBoost:  
-  Dubey et al. (2024). Explainable and Interpretable Model for the Early Detection of Brain Stroke Using Optimized Boosting Algorithms.  
-  [DOI: 10.3390/diagnostics14222514](https://www.mdpi.com/2075-4418/14/22/2514)
-- 📄 TabNet:  
-  Arik & Pfister (2021). *When Do Neural Nets Outperform Boosted Trees on Tabular Data?*   
-  [https://doi.org/10.48550/arXiv.2305.02997](https://arxiv.org/pdf/2305.02997)
+## Evaluación comparativa intercambiando datasets para los modelos
 
----
-
-## ⚙️ Algoritmo 1: XGBoost
-- Modelo: XGBClassifier (100 árboles, eval_metric="logloss")
-- Dataset: Healthcare Stroke Prediction Dataset (Kaggle)
-- Balanceo: muestreo híbrido
-  - Undersampling de la clase mayoritaria
-  - Oversampling con SMOTE de la clase minoritaria
+### ⚙️ Algoritmo 1: XGBoost
+- Modelo: XGBClassifier (100 árboles, eval_metric="error")
+- Dataset: Hypertension Risk Model Main (Kaggle)
 - Interpretabilidad: gráfico SHAP para explicar la importancia de cada variable
 
-### 📊 Resultados obtenidos
-- Accuracy: 83.5 %
-- Precision: 82 % (clase 1)
-- Recall: 85 % (clase 1)
-- F1-score: 83 %
+#### 📊 Resultados obtenidos
+- Accuracy: **88.3 %**
+- Precision: **81 %** (clase 1)
+- Recall: **82 %** (clase 1)
+- F1-score: **81 %** (clase 1)
 
-## ⚙️ Modelo 2: TabNet
+### ⚙️ Modelo 2: TabNet
 
 - Modelo: `TabNetClassifier` (entrenado por hasta 200 épocas con early stopping)
-- Dataset: Healthcare Stroke Prediction Dataset (Kaggle)
-- Balanceo de clases: SMOTE
-- Normalización: `StandardScaler`
+- Dataset: Blood Pressure Dataset (Kaggle)
 - Interpretabilidad: gráfico de **importancia de variables** basado en `feature_importances_` del modelo
 
-### 📊 Resultados obtenidos
-- Accuracy: 85.8 %
-- Precision: 85 % (clase 1)
-- Recall: 88 % (clase 1)
-- F1-score: 86 %
+#### 📊 Resultados obtenidos
+- Accuracy: **87.5 %**
+- Precision: **88 %** (clase 1)
+- Recall: **86 %** (clase 1)
+- F1-score: **87 %** (clase 1)
 
 ---
 
